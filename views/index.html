@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+
+
+    <style>
+        body {
+            background: #232836;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .login-container {
+            border-radius: .5rem;
+            background: rgb(67, 59, 61);
+            /* border: 1px solid black; */
+            padding: 1.5rem 2rem;
+        }
+
+        h3 {
+            font-size: 2.7rem;
+            color: #fff;
+        }
+
+        .keep-login {
+            color: #fff;
+        }
+
+        .login-container a {
+            /* background: #111; */
+            height: 1.4rem;
+            font-size: .8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mb-5 login-container">
+        <h3 class="mb-3">Login</h3>
+        <input type="text" placeholder="username" id="userInp" class="form-control mb-3">
+        <input type="password" placeholder="password" id="passInp" class="form-control mb-3">
+        <div class="custom-control custom-switch mb-3">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label keep-login" for="customSwitch1">Keep me Logged In</label>
+        </div>
+        <button type="text" id="sub_btn" class="btn btn-outline-primary mb-3 w-100">Login</button>
+        <a href="register.html" class="badge badge-secondary py-1 w-100 register-link">create one</a>
+    </div>
+
+
+    <script type="module">
+
+        // -------------------------FIREBASE CONFIG--------------------------------------------//
+
+
+        // Import the functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBpMd8QnuMiikHywRoId_a5hzoMwA2TLU0",
+            authDomain: "e-commerce-272d7.firebaseapp.com",
+            databaseURL: "https://e-commerce-272d7-default-rtdb.firebaseio.com",
+            projectId: "e-commerce-272d7",
+            storageBucket: "e-commerce-272d7.appspot.com",
+            messagingSenderId: "782294429621",
+            appId: "1:782294429621:web:1dd21767e86677ce9bf3fc"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+
+
+
+
+
+        import { getDatabase, ref, set, child, get, } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+
+        const db = getDatabase();
+
+        // ------------------------------------------------THE REFERENCES----------------------------------------------------//
+
+        const username = document.getElementById('userInp');
+        const pass = document.getElementById('passInp');
+        const submit = document.getElementById('sub_btn');
+
+
+        // ----------------------------------------------AUTHENTICATION PROCESS-----------------------------------------------//
+
+        function AuthenticateUser() {
+            const dbref = ref(db);
+
+            get(child(dbref, "UsersList/" + username.value)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    let dbpass = decPass(snapshot.val().password);
+                    if (dbpass == pass.value) {
+                        login();
+                    } else {
+                        alert("user doesn't exist");
+                    }
+                } else {
+                    alert("username or password is invalid");
+
+                }
+            });
+        }
+
+        // ----------------------------------------------DECRYPTION----------------------------------------------//
+
+        function decPass(dbpass) {
+            var pass12 = CryptoJS.AES.decrypt(dbpass, pass.value);
+            return pass12.toString(CryptoJS.enc.Utf8);
+        }
+
+
+
+        // ----------------------------------------------LOGIN----------------------------------------------------//
+        function login(user) {
+            let keepLoggedIn = document.getElementById('customSwitch1').checked;
+
+            if (!keepLoggedIn) {
+
+                sessionStorage.setItem('user', JSON.stringify(user));
+                window.location = "home.html";
+                alert(" Welcome " + username.value);
+
+
+                // // enable alert
+                // document.querySelector('.alert').style.display = "block";
+
+                // // remove the alert
+                // setTimeout(() => {
+                //     document.querySelector('.alert').style.display = "none";
+
+                // }, 3000);
+
+            } else {
+
+                localStorage.setItem('keepLoggedIn', 'yes');
+                localStorage.setItem('user', JSON.stringify(user));
+                window.location = "home.html";
+                alert(" Welcome " + username.value);
+
+            }
+        }
+
+
+
+        // ---------------------------------------------------ASSIGN THE EVENT--------------------------------------------------//
+
+        submit.addEventListener('click', AuthenticateUser);
+
+
+    </script>
+</body>
+
+</html>

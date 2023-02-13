@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+
+
+    <style>
+        body{
+            background: #232836;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+        .register-container{
+            border-radius: .5rem;
+            background: rgb(67, 59, 61);
+            padding: 1.5rem 2rem;
+        }
+        h3{
+            font-size: 2.7rem;
+            color: #fff;
+        }
+        .register-container a{
+            height: 1.4rem;
+            font-size: .8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mb-5 register-container">
+        <h3 class="mb-3">Sign up</h3>
+        <input type="text" placeholder="fullname" id="nameInp" class="form-control mb-3">
+        <input type="text" placeholder="email" id="emailInp" class="form-control mb-3">
+        <input type="text" placeholder="username" id="userInp" class="form-control mb-3">
+        <input type="password" placeholder="password" id="passInp" class="form-control mb-3">
+        <button type="text" id="sub_btn" class="btn btn-outline-primary mb-3 w-100">Sign Up</button>
+        <a href="index.html" class="badge badge-secondary py-1 w-100">Already Have An Account</a>
+    </div>
+    
+
+
+
+
+
+
+
+
+    <script type="module">
+
+        // -------------------------FIREBASE CONFIG--------------------------------------------//
+
+
+        // Import the functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyBpMd8QnuMiikHywRoId_a5hzoMwA2TLU0",
+          authDomain: "e-commerce-272d7.firebaseapp.com",
+          databaseURL: "https://e-commerce-272d7-default-rtdb.firebaseio.com",
+          projectId: "e-commerce-272d7",
+          storageBucket: "e-commerce-272d7.appspot.com",
+          messagingSenderId: "782294429621",
+          appId: "1:782294429621:web:1dd21767e86677ce9bf3fc"
+        };
+      
+
+        const app = initializeApp(firebaseConfig);
+
+
+
+
+
+        import { getDatabase, ref, set, child, get, } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+
+        const db = getDatabase();
+
+
+
+        // ------------------------------------------------THE REFERENCES----------------------------------------------------//
+
+        const name = document.getElementById('nameInp');
+        const email = document.getElementById('emailInp');
+        const username = document.getElementById('userInp');
+        const pass = document.getElementById('passInp');
+        const submit = document.getElementById('sub_btn');
+
+
+
+        // --------------------------------------------------VALIDATION------------------------------------------------------//
+
+        function isEmptyOrSpaces(str){
+            return str === null || str.match(/^ *$/) !== null;
+        }
+
+
+
+
+
+        function Validation(){
+            let nameregex = /^[a-zA-Z]+$/;
+            let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook)\.com$/;
+            let userregex = /^[a-zA-Z0-9]{5,}$/;
+
+
+
+            if(isEmptyOrSpaces(name.value) || isEmptyOrSpaces(email.value) || isEmptyOrSpaces(username.value) || isEmptyOrSpaces(pass.value)){
+                alert("you cannot left any field empty");
+                return false;
+            }
+            if(!nameregex.test(name.value)){
+                alert("The name should only contain alphabets!");
+                return false;
+            }
+
+            if(!emailregex.test(email.value)){
+                alert("Enter valid email!");
+                return false;
+            }
+
+            if(!userregex.test(username.value)){
+                alert("-username can only be alphanumeric\n-username must be atleast 5 characters\n-username cannot contain spaces");
+                return false;
+            }
+            return true;
+        }
+
+
+        // ----------------------------------------------REGISTER USER TO FIREBASE--------------------------------------------//
+
+        function RegisterUser(){
+            if(!Validation()){
+                return;
+            };
+            const dbRef = ref(db);
+
+            get(child(dbRef, "UsersList/"+ username.value)).then((snapshot)=>{
+                if(snapshot.exists()){
+                    alert("Account Already Exist!");
+                }
+
+                else{
+                    set(ref(db, "UsersList/"+ username.value),
+                    {
+                        fullname: name.value,
+                        email: email.value,
+                        username: username.value,
+                        password: encPass()
+                    })
+                    .then(()=>{
+                        alert("user added successfully");
+                    })
+                    .catch((error)=>{
+                        alert("error"+ error);
+                    })
+                }
+            });
+        }
+
+
+        // ------------------------------------------------------ENCRYPTION-----------------------------------------------------//
+
+        function encPass(){
+            var pass12 = CryptoJS.AES.encrypt(pass.value, pass.value);
+            return pass12.toString();
+        }
+
+
+
+
+        // ---------------------------------------------------ASSIGN THE EVENT--------------------------------------------------//
+
+        submit.addEventListener('click', RegisterUser);
+    
+
+
+      </script>
+</body>
+</html>

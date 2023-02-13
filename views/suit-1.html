@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-commerce</title>
+
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
+
+
+
+    <!-- custom css file link -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- header section start -->
+    <header>
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+        <a href="/views/home.html" class="logo">e-commerce</a>
+
+        <nav class="navbar">
+            <a href="/views/home.html">home</a>
+            <a href="/views/home.html#product">product</a>
+            <a href="/views/category.html">category</a>
+            <a href="#about-box">about</a>
+            <a href="/views/contact.html">contact</a>
+        </nav>
+
+        <div class="icons">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <a href="index.html" id="logout-ftr">Logout</a>
+            <!-- <a href="/views/login.html" class="fas fa-user"></a> -->
+        </div>
+    </header>
+
+    
+    <section id="prodetails" class="prodDetails">
+        <div class="single-pro-img">
+            <img src="/p_img/suit/suit_1.1.png" width="100%" id="mainImg" alt="">
+
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img src="/p_img/suit/suit_1.1.png" width="100%" class="small-img" alt="" width="100%">
+                </div>
+
+                <div class="small-img-col">
+                    <img src="/p_img/suit/suit_1.2.png" width="100%" class="small-img" alt="">
+                </div>
+
+                <div class="small-img-col">
+                    <img src="/p_img/suit/suit_1.3.png" width="100%" class="small-img" alt="">
+                </div>
+
+                <div class="small-img-col">
+                    <img src="/p_img/suit/suit_1.4.png" width="100%" class="small-img" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="single-pro-details">
+            <h6>Home / Shirt</h6>
+            <h4>Men's Fashion T Shirt</h4>
+            <h2>$150.56</h2>
+            <select>
+                <option>select size</option>
+                <option>small</option>
+                <option>medium</option>
+                <option>large</option>
+                <option>xl</option>
+                <option>xxl</option>
+            </select>
+            <input type="number" value="1">
+            <button class="btn">Add to Cart</button>
+            <h4>Product deatils</h4>
+            <span><p class="product-content-details">Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Repellat perspiciatis accusantium quidem repellendus quos dolor sequi, 
+                obcaecati autem consequuntur! Fuga quae nesciunt quis esse quasi 
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Repellat perspiciatis accusantium quidem repellendus quos dolor sequi, 
+                obcaecati autem consequuntur!
+                magnam hic et architecto alias.</p> </span>
+        </div>
+    </section>
+
+
+
+    <section class="product" id="product">
+        <h1 class="heading"> featured <span>products</span></h1>
+
+        <div class="box-container">
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                    <!-- <a href="#" class="fas fa-eye"></a> -->
+                </div>
+                <img src="/img/male_1.1.png" alt="product">
+                <div class="content">
+                    <h3>T-Shirt</h3>
+                    <div class="price">$150.56 <span>$170.29</span></div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <a href="#" class="btn">Buy</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                </div>
+                <img src="/img/shirt_1.1.png" alt="product">
+                <div class="content">
+                    <h3>T-Shirt</h3>
+                    <div class="price">$117.64 <span>$139.46</span></div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <a href="#" class="btn">buy</a>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                </div>
+                <img src="/img/Mens_suit_3.1.png" alt="product">
+                <div class="content">
+                    <h3>Suit</h3>
+                    <div class="price">$150.56 <span>$170.29</span></div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <a href="#" class="btn">buy</a>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+     <!-- footer section -->
+
+    <footer class="footer">
+
+        <div class="box-container">
+
+            <div class="about-box" id="about-box">
+                <h3>about</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Quidem vitae voluptas cum iste doloribus, vel et sit ex in pariatur incidunt
+                     facilis earum quaerat est quo officiis repellat ullam blanditiis 
+                     necessitatibus quas! Ab, odio asperiores? Suscipit quidem esse sequi cupiditate!</p>
+
+                    
+            </div> 
+
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#">home</a>
+                <a href="#">product</a>
+                <a href="#">category</a>
+                <a href="#">FAQ</a>
+                <a href="#">contact</a>
+            </div>
+
+            <div class="box">
+                <h3>Shop</h3>
+                <a href="#">men</a>
+                <a href="#">women</a>
+                <a href="#">kids</a>
+                <a href="#">fashion</a>
+                <a href="#">electronics</a>
+                <a href="#">furniture</a>
+            </div>
+
+            <div class="box">
+                <h3>follow us</h3>
+
+
+
+                <ul class="twitter-social">
+                    <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                </ul>
+
+                <ul class="facebook-social">
+                        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                </ul>
+
+                <ul class="insta-social">
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+
+                <ul class="linkedin-social">
+                    <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+                </ul>
+
+            </div>
+            
+
+            <div class="credit">created by <span>Arpit Singh</span> | all rights reserved!</div>
+            
+        </div>
+
+    </footer>
+
+
+
+    <!-- script for single product page -->
+    <script>
+        // here we do swapping with main to small img
+        var mainimg = document.getElementById("mainImg");
+        var smallimg = document.getElementsByClassName("small-img");
+
+        smallimg[0].onclick = function(){
+            mainimg.src = smallimg[0].src;
+        }
+        smallimg[1].onclick = function(){
+            mainimg.src = smallimg[1].src;
+        }
+        smallimg[2].onclick = function(){
+            mainimg.src = smallimg[2].src;
+        }
+        smallimg[3].onclick = function(){
+            mainimg.src = smallimg[3].src;
+        }
+    </script>
+
+
+    <!-- custom js file link -->
+    <script src="/js/app.js"></script>
+
+</body>
+</html>
